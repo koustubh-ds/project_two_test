@@ -4,10 +4,11 @@ import os
 from typing import Optional
 from app.utils.openai_client import get_openai_response
 from app.utils.file_handler import save_upload_file_temporarily
+from app.utils.functions import *
 import json
 
 # Import the functions you want to test directly
-from app.utils.functions import *
+
 
 app = FastAPI(title="IITM DS Solver")
 
@@ -21,7 +22,7 @@ app.add_middleware(
 )
 
 
-@app.post("/api/")
+@app.post("/api")
 async def process_question(
     question: str = Form(...), file: Optional[UploadFile] = File(None)
 ):

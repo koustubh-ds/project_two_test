@@ -1437,9 +1437,10 @@ async def count_tokens(text: str) -> str:
 
     url = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
 
+    AIPROXY_TOKEN = os.getenv("AIPROXY_TOKEN")
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {os.getenv("AIPROXY_TOKEN", "dummy_api_key")}",
+        "Authorization": f"Bearer {AIPROXY_TOKEN}",
     }
 
     payload = {
@@ -1967,9 +1968,10 @@ async def compute_document_similarity(docs: List[str], query: str) -> str:
         # Function to get embeddings from OpenAI API
         async def get_embedding(text: str) -> List[float]:
             url = "https://aiproxy.sanand.workers.dev/openai/v1/embeddings"
+            AIPROXY_TOKEN = os.getenv("AIPROXY_TOKEN")
             headers = {
                 "Content-Type": "application/json",
-                "Authorization": f"Bearer {os.getenv("AIPROXY_TOKEN", "dummy_api_key")}",  # Replace with actual API key in production
+                "Authorization": f"Bearer {AIPROXY_TOKEN}",  # Replace with actual API key in production
             }
             payload = {"model": "text-embedding-3-small", "input": text}
 
